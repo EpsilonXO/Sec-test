@@ -1,631 +1,452 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX FITNESS | Transform Your Body</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Jordan Matthews - Professional Athlete & Influencer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        html {
+            scroll-behavior: smooth;
         }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
+        
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,1));
         }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 5%;
-            z-index: 1000;
-            border-bottom: 3px solid #e74c3c;
+        
+        .hover-scale {
+            transition: transform 0.5s ease;
         }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        
+        .hover-scale:hover {
+            transform: scale(1.1);
         }
-
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #e74c3c;
-            letter-spacing: 3px;
+        
+        .gallery-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: 'Oswald', sans-serif;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover {
-            color: #e74c3c;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.2), rgba(0, 0, 0, 0.6));
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 6rem;
-            margin-bottom: 1rem;
-            line-height: 1;
-            color: #fff;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-            letter-spacing: 5px;
-        }
-
-        .hero .tagline {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            color: #fff;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.5rem 4rem;
-            background: #e74c3c;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            border: 3px solid #e74c3c;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.5);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: #111;
-            padding: 5rem 5%;
-            border-top: 3px solid #e74c3c;
-            border-bottom: 3px solid #e74c3c;
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat {
-            padding: 2rem;
-            background: rgba(231, 76, 60, 0.1);
-            border-left: 4px solid #e74c3c;
-            transition: transform 0.3s;
-        }
-
-        .stat:hover {
-            transform: translateX(10px);
-            background: rgba(231, 76, 60, 0.2);
-        }
-
-        .stat-number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4.5rem;
-            font-weight: bold;
-            color: #e74c3c;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
-            color: #ccc;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Equipment Section */
-        .equipment {
-            padding: 6rem 5%;
-            background: #000;
-        }
-
-        .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #fff;
-            letter-spacing: 4px;
-        }
-
-        .section-subtitle {
-            font-family: 'Oswald', sans-serif;
-            text-align: center;
-            color: #e74c3c;
-            font-size: 1.3rem;
-            margin-bottom: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .equipment-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .equipment-card {
-            height: 350px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-            border: 3px solid #222;
-            transition: transform 0.3s;
-        }
-
-        .equipment-card:hover {
-            transform: scale(1.05);
-            border-color: #e74c3c;
-        }
-
-        .equipment-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-        }
-
-        .equipment-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            color: #fff;
-            letter-spacing: 3px;
-        }
-
-        /* Programs Section */
-        .programs {
-            padding: 6rem 5%;
-            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-
-        .program-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .program-card {
-            background: rgba(17, 17, 17, 0.95);
-            border: 3px solid #333;
-            padding: 3rem;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: #e74c3c;
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .program-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .program-card:hover {
-            transform: translateY(-10px);
-            border-color: #e74c3c;
-            box-shadow: 0 20px 50px rgba(231, 76, 60, 0.3);
-        }
-
-        .program-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .program-card h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #e74c3c;
-            letter-spacing: 2px;
-        }
-
-        .program-card p {
-            font-family: 'Roboto', sans-serif;
-            color: #ccc;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .program-price {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #fff;
-            letter-spacing: 2px;
-        }
-
-        /* Athlete Section */
-        .athlete {
-            padding: 6rem 5%;
-            background: #000;
-        }
-
-        .athlete-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .athlete-image {
-            height: 600px;
-            background: url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80');
-            background-size: cover;
-            background-position: center;
-            border: 5px solid #e74c3c;
-            box-shadow: 20px 20px 0 rgba(231, 76, 60, 0.3);
-        }
-
-        .athlete-text h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            color: #e74c3c;
-            letter-spacing: 3px;
-        }
-
-        .athlete-text p {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #ccc;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 5%;
-            background: #111;
-            text-align: center;
-            border-top: 3px solid #e74c3c;
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .social-link {
-            width: 70px;
-            height: 70px;
-            background: #e74c3c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 3px solid #e74c3c;
-        }
-
-        .social-link:hover {
-            background: transparent;
-            transform: scale(1.2);
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 5%;
-            text-align: center;
-            color: #666;
-            background: #000;
-            border-top: 1px solid #333;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        @media (max-width: 968px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-
-            .athlete-content {
-                grid-template-columns: 1fr;
-            }
-
-            .athlete-image {
-                height: 400px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">APEX FITNESS</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
+<body class="bg-black text-white">
+    
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>NO PAIN NO GAIN</h1>
-            <p class="tagline">Push Your Limits. Break Your Records.</p>
-            <a href="#programs" class="cta-button">Start Training Now</a>
+    <div class="relative h-screen">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img 
+                src="https://images.unsplash.com/photo-1759476533830-8cc4b219f0c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdGhsZXRlJTIwZml0bmVzcyUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NDU2NDI2NXww&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Athlete portrait"
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 hero-gradient"></div>
         </div>
-    </section>
+
+        <!-- Content -->
+        <div class="relative z-10 h-full flex flex-col justify-between p-8 md:p-12 lg:p-16">
+            <!-- Navigation -->
+            <nav class="flex justify-between items-center">
+                <div class="text-2xl tracking-wider">APEX</div>
+                <div class="flex gap-6">
+                    <a href="#about" class="hover:text-red-500 transition-colors">About</a>
+                    <a href="#gallery" class="hover:text-red-500 transition-colors">Gallery</a>
+                    <a href="#contact" class="hover:text-red-500 transition-colors">Contact</a>
+                </div>
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="flex-1 flex flex-col justify-center max-w-4xl">
+                <div class="space-y-6">
+                    <div class="text-red-500 tracking-widest uppercase">Professional Athlete & Influencer</div>
+                    <h1 class="text-6xl md:text-7xl lg:text-8xl tracking-tight">
+                        JORDAN<br />MATTHEWS
+                    </h1>
+                    <p class="text-xl text-gray-300 max-w-2xl">
+                        Transforming lives through fitness. Champion bodybuilder, certified trainer, and your guide to peak performance.
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <button class="bg-red-500 hover:bg-red-600 transition-colors px-8 py-4 uppercase tracking-wider">
+                            Work With Me
+                        </button>
+                        <button class="border-2 border-white hover:bg-white hover:text-black transition-colors px-8 py-4 uppercase tracking-wider">
+                            My Programs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-red-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" class="hover:text-red-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+                        <path d="m10 15 5-3-5-3z"/>
+                    </svg>
+                </a>
+                <a href="#" class="hover:text-red-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat">
-                <div class="stat-number">500K+</div>
-                <div class="stat-label">Followers</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">10K+</div>
-                <div class="stat-label">Transformations</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">Success Rate</div>
+    <div class="py-20 px-8 md:px-12 lg:px-16 bg-gradient-to-b from-black to-zinc-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl text-red-500 mb-2">2M+</div>
+                    <div class="text-gray-400 uppercase tracking-wider">Followers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl text-red-500 mb-2">500+</div>
+                    <div class="text-gray-400 uppercase tracking-wider">Clients Trained</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl text-red-500 mb-2">15+</div>
+                    <div class="text-gray-400 uppercase tracking-wider">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl lg:text-6xl text-red-500 mb-2">50+</div>
+                    <div class="text-gray-400 uppercase tracking-wider">Competition Wins</div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Equipment Section -->
-    <section class="equipment">
-        <h2 class="section-title">TRAIN WITH THE BEST</h2>
-        <p class="section-subtitle">Professional Grade Equipment</p>
-        <div class="equipment-grid">
-            <div class="equipment-card" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80');">
-                <div class="equipment-title">FREE WEIGHTS</div>
-            </div>
-            <div class="equipment-card" style="background-image: url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80');">
-                <div class="equipment-title">CARDIO ZONE</div>
-            </div>
-            <div class="equipment-card" style="background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&q=80');">
-                <div class="equipment-title">STRENGTH TRAINING</div>
+    <!-- About Section -->
+    <div id="about" class="py-24 px-8 md:px-12 lg:px-16 bg-zinc-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="text-red-500 uppercase tracking-widest">About Me</div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl">
+                        Building Champions,<br />One Rep at a Time
+                    </h2>
+                    <div class="space-y-4 text-gray-300">
+                        <p>
+                            With over 15 years in the fitness industry, I've dedicated my life to pushing the boundaries of human performance. From winning my first competition at 22 to training elite athletes and everyday warriors, my mission has always been the same: help you become the best version of yourself.
+                        </p>
+                        <p>
+                            My journey started in a small-town gym with nothing but a dream and determination. Today, I'm proud to have built a community of 2 million+ followers who trust me to guide them on their fitness journey.
+                        </p>
+                        <p>
+                            Whether you're looking to compete, build muscle, lose fat, or simply improve your health, I've developed proven programs that deliver real results. No gimmicks, no shortcuts—just hard work, science-backed methods, and unwavering support.
+                        </p>
+                    </div>
+                    <button class="bg-red-500 hover:bg-red-600 transition-colors px-8 py-4 uppercase tracking-wider mt-6">
+                        Read My Story
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="relative h-[600px] rounded-lg overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1605296867724-fa87a8ef53fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwbW90aXZhdGlvbnxlbnwxfHx8fDE3NjQ1MjcwODh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                            alt="Training session"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 bg-red-500 p-8 rounded-lg">
+                        <div class="text-4xl">💪</div>
+                        <div class="mt-2">Certified</div>
+                        <div class="uppercase tracking-wider">Trainer</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Athlete Section -->
-    <section class="athlete" id="about">
-        <div class="athlete-content">
-            <div class="athlete-image"></div>
-            <div class="athlete-text">
-                <h2>TRAIN LIKE A CHAMPION</h2>
-                <p>With over 15 years of experience in professional athletics and personal training, I've helped thousands transform their bodies and minds.</p>
-                <p>My approach combines science-backed training methods with real-world experience to deliver results that last.</p>
-                <p>Whether you're just starting out or looking to break through plateaus, I'll guide you every step of the way to achieve your fitness goals.</p>
+    <!-- Gallery Section -->
+    <div id="gallery" class="py-24 px-8 md:px-12 lg:px-16 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="text-red-500 uppercase tracking-widest mb-4">Gallery</div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl">Training In Action</h2>
             </div>
-        </div>
-    </section>
 
-    <!-- Programs Section -->
-    <section class="programs" id="programs">
-        <h2 class="section-title">TRAINING PROGRAMS</h2>
-        <p class="section-subtitle">Choose Your Path To Greatness</p>
-        <div class="program-grid">
-            <div class="program-card">
-                <div class="program-icon">💪</div>
-                <h3>STRENGTH BUILDER</h3>
-                <p>Build raw power and muscle mass with progressive overload training designed for maximum gains.</p>
-                <div class="program-price">$99/MO</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer">
+                    <img
+                        src="https://images.unsplash.com/photo-1669807164466-10a6584a067e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxneW0lMjB3b3Jrb3V0JTIwdHJhaW5pbmd8ZW58MXx8fHwxNzY0NTUyODU2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                        alt="Leg Day Intensity"
+                        class="w-full h-full object-cover hover-scale"
+                    />
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <p class="text-xl">Leg Day Intensity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 (Video) -->
+                <div class="gallery-item relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer">
+                    <img
+                        src="https://images.unsplash.com/photo-1745103598675-85df75773d12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdGhsZXRpYyUyMHNwb3J0JTIwYWN0aW9ufGVufDF8fHx8MTc2NDU2NDI2NXww&ixlib=rb-4.1.0&q=80&w=1080"
+                        alt="Full Body Circuit"
+                        class="w-full h-full object-cover hover-scale"
+                    />
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <p class="text-xl">Full Body Circuit</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="bg-red-500 rounded-full p-4 group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="6 3 20 12 6 21 6 3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer">
+                    <img
+                        src="https://images.unsplash.com/photo-1746003625470-8dde780622f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdGhsZXRlJTIwdHJhaW5pbmclMjBvdXRkb29yfGVufDF8fHx8MTc2NDUyNTMzMnww&ixlib=rb-4.1.0&q=80&w=1080"
+                        alt="Outdoor Training"
+                        class="w-full h-full object-cover hover-scale"
+                    />
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <p class="text-xl">Outdoor Training</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item relative group overflow-hidden rounded-lg aspect-[4/3] cursor-pointer">
+                    <img
+                        src="https://images.unsplash.com/photo-1676109829011-a9f0f3e40f00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxneW0lMjBlcXVpcG1lbnQlMjB3ZWlnaHRzfGVufDF8fHx8MTc2NDUzMjU2Nnww&ixlib=rb-4.1.0&q=80&w=1080"
+                        alt="Equipment Mastery"
+                        class="w-full h-full object-cover hover-scale"
+                    />
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <p class="text-xl">Equipment Mastery</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="program-card">
-                <div class="program-icon">🔥</div>
-                <h3>FAT SHREDDER</h3>
-                <p>Burn fat while maintaining muscle through high-intensity training and optimized nutrition plans.</p>
-                <div class="program-price">$129/MO</div>
-            </div>
-            <div class="program-card">
-                <div class="program-icon">⚡</div>
-                <h3>ELITE ATHLETE</h3>
-                <p>Take your performance to the next level with personalized 1-on-1 coaching and custom programming.</p>
-                <div class="program-price">$299/MO</div>
+
+            <div class="text-center mt-12">
+                <button class="border-2 border-white hover:bg-white hover:text-black transition-colors px-8 py-4 uppercase tracking-wider">
+                    View More Content
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Achievements Section -->
+    <div class="py-24 px-8 md:px-12 lg:px-16 bg-zinc-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="text-red-500 uppercase tracking-widest mb-4">Achievements</div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl">Proven Track Record</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Achievement 1 -->
+                <div class="bg-black p-8 rounded-lg border border-zinc-800 hover:border-red-500 transition-colors">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-red-500 p-4 rounded-lg shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                                <path d="M4 22h16"/>
+                                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl">Mr. Olympia Competitor</h3>
+                                <span class="text-red-500">2020-2024</span>
+                            </div>
+                            <p class="text-gray-400">Competed at the highest level of professional bodybuilding</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="bg-black p-8 rounded-lg border border-zinc-800 hover:border-red-500 transition-colors">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-red-500 p-4 rounded-lg shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="6"/>
+                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl">National Champion</h3>
+                                <span class="text-red-500">2019</span>
+                            </div>
+                            <p class="text-gray-400">First place, Men's Open Division</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="bg-black p-8 rounded-lg border border-zinc-800 hover:border-red-500 transition-colors">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-red-500 p-4 rounded-lg shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl">Fitness Influencer of the Year</h3>
+                                <span class="text-red-500">2022</span>
+                            </div>
+                            <p class="text-gray-400">Recognized for impact and community building</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement 4 -->
+                <div class="bg-black p-8 rounded-lg border border-zinc-800 hover:border-red-500 transition-colors">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-red-500 p-4 rounded-lg shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-xl">Transformation Specialist</h3>
+                                <span class="text-red-500">2015-Present</span>
+                            </div>
+                            <p class="text-gray-400">500+ successful client transformations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-content">
-            <h2 class="section-title">LET'S CONNECT</h2>
-            <p style="font-size: 1.3rem; color: #ccc; margin-bottom: 2rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;">
-                Join The Community. Start Your Journey.
-            </p>
-            <div class="social-links">
-                <a href="#" class="social-link">📷</a>
-                <a href="#" class="social-link">▶️</a>
-                <a href="#" class="social-link">💬</a>
-                <a href="#" class="social-link">📘</a>
+    <div id="contact" class="py-24 px-8 md:px-12 lg:px-16 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <div class="text-red-500 uppercase tracking-widest">Get In Touch</div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl">
+                        Ready to Start<br />Your Journey?
+                    </h2>
+                    <p class="text-gray-300 text-xl">
+                        Whether you're looking for personalized coaching, have questions about my programs, or want to collaborate, I'd love to hear from you.
+                    </p>
+
+                    <div class="space-y-4 pt-6">
+                        <a href="mailto:contact@jordanmatthews.com" class="flex items-center gap-4 text-gray-300 hover:text-red-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <span>contact@jordanmatthews.com</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-4 text-gray-300 hover:text-red-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+                            </svg>
+                            <span>Book a Consultation</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-8">
+                        <div class="text-gray-400 mb-4">Follow My Journey</div>
+                        <div class="flex gap-4">
+                            <a href="#" class="bg-zinc-900 hover:bg-red-500 transition-colors p-4 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="bg-zinc-900 hover:bg-red-500 transition-colors p-4 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+                                    <path d="m10 15 5-3-5-3z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="bg-zinc-900 hover:bg-red-500 transition-colors p-4 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 p-8 rounded-lg">
+                    <form class="space-y-6" onsubmit="handleSubmit(event)">
+                        <div>
+                            <label class="block mb-2 text-gray-400">Name</label>
+                            <input
+                                type="text"
+                                placeholder="Your name"
+                                class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 focus:outline-none focus:border-red-500 transition-colors text-white"
+                            />
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-gray-400">Email</label>
+                            <input
+                                type="email"
+                                placeholder="your.email@example.com"
+                                class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 focus:outline-none focus:border-red-500 transition-colors text-white"
+                            />
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-gray-400">Message</label>
+                            <textarea
+                                rows="5"
+                                placeholder="Tell me about your goals..."
+                                class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 focus:outline-none focus:border-red-500 transition-colors resize-none text-white"
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            class="w-full bg-red-500 hover:bg-red-600 transition-colors px-8 py-4 uppercase tracking-wider"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-800 mt-24 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 Jordan Matthews. All rights reserved.</p>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 APEX FITNESS. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat, .program-card, .equipment-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease';
-            observer.observe(el);
-        });
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! This is a demo form.');
+            event.target.reset();
+        }
     </script>
+
 </body>
 </html>
+```
